@@ -9,15 +9,37 @@ def clear():
 
 #Saudações e escolha do nome
 clear()
-print("Olá! Bem-vindo ao algoritmo do jogo das damas.")
-print("Vamos começar!")
+print(
+"""
++==================================+
+| \033[33mBem vindo ao algoritimo do\033[m       |
+| \033[33mjogo das damas.\033[m                  |
++==================================+
+""")
+
+time.sleep(2)
+
+print("\033[2;32mVamos começar...\033[m")
+time.sleep(1)
+print("\033[2;32mBoa sorte!\033[m")
+time.sleep(2)
+
+#Limpar a tela do terminal
+os.system('cls')
+
+time.sleep(1)
 j1 = input("Introduz o nome do Jogador 1: ")
 j2 = input("Introduz o nome do Jogador 2: ")
 
 #Inicio das peças pretas
 clear()
-print("Muito bem! Agora que já registaste o nome dos jogadores, vamos ver quem vai jogar primeiro.")
-print("No jogo das damas as peças pretas são as primeiras a começar.")
+print("\033[33;40mMuito bem! Agora que já registaste o nome dos jogadores, vamos ver quem vai jogar primeiro.\033[m")
+time.sleep(2)
+print("\033[33;40mNo jogo das damas as peças pretas são as primeiras a começar.\033[m")
+time.sleep(2)
+print()
+print("=-" * 50)
+print()
 escolha_pecas = input("Queres escolher quem vai ficar com as peças pretas? (S/N) ").upper()
 
 #Escolha voluntária do primeiro jogador
@@ -25,14 +47,15 @@ if escolha_pecas == "S" or escolha_pecas == "SIM":
     while True:
         clear()
         print("Nesse caso, escolhe o jogador que queres que comece...")
-        ji = input("Podes escrever tanto o nome como o número de jogador: ")
+        ji = input("Podes escrever tanto o \033[33mNOME\033[m como o \033[33mNÚMERO\033[m de jogador: ")
         if ji == "1" or ji == j1 or ji == j1.upper() or ji == j1.lower():
             clear()
             jogador_inicial = 1
             print("Estrutura do jogo: número de peça a jogar[][] número para onde queres jogar[][]")
-            print("Ex: [0][2][1][3]")
+            print("\033[30;43mEx: [0][2][1][3]\033[m")
+            print()
             print("Primeiro jogador a começar: " + str(j1))
-            input("Prime ENTER para começar a jogar. ")
+            input("Prime \033[4;32mENTER\033[m para começar a jogar. ")
             break
         elif ji == "2" or ji == j2 or ji == j2.upper() or ji == j2.lower():
             clear()
