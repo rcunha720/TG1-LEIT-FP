@@ -171,6 +171,28 @@ def jogada(xantes, yantes, xdepois, ydepois):
                         return False
                 else:
                     return False
+            #Eliminação de duas peças na diagonal esqurda
+            elif (xdepois == xantes - 4 and ydepois == yantes - 4):
+                if ((tabuleiro[xantes-1][yantes-1] == 'P' or tabuleiro[xantes-1][yantes-1] == 'RP') and (tabuleiro[xantes-3][yantes-3] == 'P' or tabuleiro[xantes-3][yantes-3] == 'RP')):
+                    if (tabuleiro[xantes-2][yantes-2] == 'V' and tabuleiro[xantes-4][yantes-4] == 'V'):
+                        tabuleiro[xantes-1][yantes-1] = 'V'
+                        tabuleiro[xantes-3][yantes-3] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+            #Eliminação de duas peças na diagonal direita
+            elif (xdepois == xantes - 4 and ydepois == yantes + 4):
+                if((tabuleiro[xantes-1][yantes+1] == 'P' or tabuleiro[xantes-1][yantes+1] == 'RP') and (tabuleiro[xantes-3][yantes+3] == 'P' or tabuleiro[xantes-3][yantes+3] == 'RP')):
+                    if (tabuleiro[xantes-2][yantes+2] == 'V' and tabuleiro[xantes-4][yantes+4] == 'V'):
+                        tabuleiro[xantes-1][yantes+1] = 'V'
+                        tabuleiro[xantes-3][yantes+3] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
             else:
                 return False
     #Jogada Pretas
@@ -195,11 +217,33 @@ def jogada(xantes, yantes, xdepois, ydepois):
                         return False
                 else:
                     return False
-            #Eliminação de uma peça na diagonal direita´
+            #Eliminação de uma peça na diagonal direita
             elif (xdepois == xantes + 2 and ydepois == yantes + 2):
                 if(tabuleiro[xantes+1][yantes+1] == 'B' or tabuleiro[xantes+1][yantes+1] == 'RB'):
                     if tabuleiro[xdepois][ydepois] == 'V':
                         tabuleiro[xantes+1][yantes+1] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+            #Eliminação de duas peças na diagonal esquerda
+            elif (xdepois == xantes + 4 and ydepois == yantes - 4):
+                if((tabuleiro[xantes+1][yantes-1] == 'B' or tabuleiro[xantes+1][yantes-1] == 'RB') and (tabuleiro[xantes+3][yantes-3] == 'B' or tabuleiro[xantes+3][yantes-3] == 'RB')):
+                    if (tabuleiro[xantes+2][yantes-2] == 'V' and tabuleiro[xantes+4][yantes-4] == 'V'):
+                        tabuleiro[xantes+1][yantes-1] = 'V'
+                        tabuleiro[xantes+3][yantes-3] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+            #Eliminação de duas peças na diagonal direita
+            elif (xdepois == xantes + 4 and ydepois == yantes + 4):
+                if((tabuleiro[xantes+1][yantes+1] == 'B' or tabuleiro[xantes+1][yantes+1] == 'RB') and (tabuleiro[xantes+3][yantes+3] == 'B' or tabuleiro[xantes+3][yantes+3] == 'RB')):
+                    if (tabuleiro[xantes+2][yantes+2] == 'V' and tabuleiro[xantes+4][yantes+4] == 'V'):
+                        tabuleiro[xantes+1][yantes+1] = 'V'
+                        tabuleiro[xantes+3][yantes+3] = 'V'
                         return True
                     else:
                         return False
