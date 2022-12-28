@@ -193,6 +193,30 @@ def jogada(xantes, yantes, xdepois, ydepois):
                         return False
                 else:
                     return False
+            #Eliminação de três peças na diagonal esquerda
+            elif (xdepois == xantes - 6 and ydepois == yantes - 6):
+                if ((tabuleiro[xantes-1][yantes-1] == 'P' or tabuleiro[xantes-1][yantes-1] == 'RP') and (tabuleiro[xantes-3][yantes-3] == 'P' or tabuleiro[xantes-3][yantes-3] == 'RP') and (tabuleiro[xantes-5][yantes-5] == 'P' or tabuleiro[xantes-5][yantes-5] == 'RP')):
+                    if(tabuleiro[xantes-2][yantes-2] == 'V' and tabuleiro[xantes-4][yantes-4] == 'V' and tabuleiro[xantes-6][yantes-6] == 'V'):
+                        tabuleiro[xantes-1][yantes-1] = 'V'
+                        tabuleiro[xantes-3][yantes-3] = 'V'
+                        tabuleiro[xantes-5][yantes-5] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+            #Eliminação de três peças na diagonal direita
+            elif (xdepois == xantes - 6 and ydepois == yantes + 6):
+                if ((tabuleiro[xantes-1][yantes+1] == 'P' or tabuleiro[xantes-1][yantes+1] == 'RP') and (tabuleiro[xantes-3][yantes+3] == 'P' or tabuleiro[xantes-3][yantes+3] == 'RP') and (tabuleiro[xantes-5][yantes+5] == 'P' or tabuleiro[xantes-5][yantes+5] == 'RP')):
+                    if(tabuleiro[xantes-2][yantes+2] == 'V' and tabuleiro[xantes-4][yantes+4] == 'V' and tabuleiro[xantes-6][yantes+6] == 'V'):
+                        tabuleiro[xantes-1][yantes+1] = 'V'
+                        tabuleiro[xantes-3][yantes+3] = 'V'
+                        tabuleiro[xantes-5][yantes+5] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False           
             else:
                 return False
     #Jogada Pretas
@@ -249,9 +273,32 @@ def jogada(xantes, yantes, xdepois, ydepois):
                         return False
                 else:
                     return False
+            #Eliminação de três peças na diagonal esquerda
+            elif (xdepois == xantes + 6 and ydepois == yantes - 6):
+                if ((tabuleiro[xantes+1][yantes-1] == 'B' or tabuleiro[xantes+1][yantes-1] == 'RB') and (tabuleiro[xantes+3][yantes-3] == 'B' or tabuleiro[xantes+3][yantes-3] == 'RB') and (tabuleiro[xantes+5][yantes-5] == 'B' or tabuleiro[xantes+5][yantes-5] == 'RB')):
+                    if(tabuleiro[xantes+2][yantes-2] == 'V' and tabuleiro[xantes+4][yantes-4] == 'V' and tabuleiro[xantes+6][yantes-6] == 'V'):
+                        tabuleiro[xantes+1][yantes-1] = 'V'
+                        tabuleiro[xantes+3][yantes-3] = 'V'
+                        tabuleiro[xantes+5][yantes-5] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+            #Eliminação de três peças na diagonal direita
+            elif (xdepois == xantes + 6 and ydepois == yantes + 6):
+                if ((tabuleiro[xantes+1][yantes+1] == 'B' or tabuleiro[xantes+1][yantes+1] == 'RB') and (tabuleiro[xantes+3][yantes+3] == 'B' or tabuleiro[xantes+3][yantes+3] == 'RB') and (tabuleiro[xantes+5][yantes+5] == 'B' or tabuleiro[xantes+5][yantes+5] == 'RB')):
+                    if(tabuleiro[xantes+2][yantes+2] == 'V' and tabuleiro[xantes+4][yantes+4] == 'V' and tabuleiro[xantes+6][yantes+6] == 'V'):
+                        tabuleiro[xantes+1][yantes+1] = 'V'
+                        tabuleiro[xantes+3][yantes+3] = 'V'
+                        tabuleiro[xantes+5][yantes+5] = 'V'
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
             else:
                 return False
-
 
 #contador com a vez do jogador
 contador = jogador_inicial
@@ -269,6 +316,7 @@ while True:
             print()
             jogadastring = input("Joga: ")
             lista_jogada = list(jogadastring)
+            #Jogada Normal
             if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
                 if jogada(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                     cordxantes = int(lista_jogada[1])
@@ -278,9 +326,20 @@ while True:
                     print(cordxantes)
                     tabuleiro[cordxantes][cordyantes] = 'V'
                     tabuleiro[cordxdepois][cordydepois] = 'P'
+                    if cordxdepois == 7:
+                        tabuleiro[cordxdepois][cordydepois] = 'RP'
                     break
                 else:
                     continue
+            #Jogada Rainha
+            '''elif (len(lista_jogada) % 3 == 0 and len(lista_jogada) >= 6):
+                cordxantes = int(lista_jogada[1])
+                cordyantes = int(lista_jogada[4])    
+                tamanholista = len(lista_jogada)
+                cordxdepois = int(lista_jogada[tamanholista - 4])
+                cordydepois = int(lista_jogada[tamanholista - 1])
+            else:
+                continue'''
     else:
         #Loop jogadas brancas
         while True:
@@ -299,6 +358,8 @@ while True:
                     cordydepois = int(lista_jogada[10])
                     tabuleiro[cordxantes][cordyantes] = 'V'
                     tabuleiro[cordxdepois][cordydepois] = 'B'
+                    if cordxdepois == 0:
+                        tabuleiro[cordxdepois][cordydepois] = 'RB'
                     break
                 else:
                     continue
