@@ -300,6 +300,31 @@ def jogada(xantes, yantes, xdepois, ydepois):
             else:
                 return False
 
+#Jogada da rainha normal
+def rainha_normal(xantes, yantes, xdepois, ydepois):
+    difx = xdepois - xantes
+    dify = ydepois - yantes
+
+    if tabuleiro[xantes][yantes] != 'RB' and tabuleiro[xantes][yantes] != 'RP':
+        return False
+
+    elif (difx == dify) or (difx == dify * -1) or (difx * -1 == dify):
+        if tabuleiro[xdepois][ydepois] == 'V':
+            if tabuleiro[xantes][yantes] == 'RB':
+                tabuleiro[xdepois][ydepois] = 'RB'
+                tabuleiro[xantes][yantes] = 'V'
+                return True
+            elif tabuleiro[xantes][yantes] == 'RP':
+                tabuleiro[xdepois][ydepois] = 'RP'    
+                tabuleiro[xantes][yantes] = 'V'
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
 #contador com a vez do jogador
 contador = jogador_inicial
 
@@ -316,30 +341,37 @@ while True:
             print()
             jogadastring = input("Joga: ")
             lista_jogada = list(jogadastring)
+            cordxantes = int(lista_jogada[1])
+            cordyantes = int(lista_jogada[4])
             #Jogada Normal
-            if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
-                if jogada(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
-                    cordxantes = int(lista_jogada[1])
-                    cordyantes = int(lista_jogada[4])
-                    cordxdepois = int(lista_jogada[7])
-                    cordydepois = int(lista_jogada[10])
-                    print(cordxantes)
-                    tabuleiro[cordxantes][cordyantes] = 'V'
-                    tabuleiro[cordxdepois][cordydepois] = 'P'
-                    if cordxdepois == 7:
-                        tabuleiro[cordxdepois][cordydepois] = 'RP'
-                    break
+            if tabuleiro[cordxantes][cordyantes] == 'P':
+                if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                    if jogada(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                        cordxdepois = int(lista_jogada[7])
+                        cordydepois = int(lista_jogada[10])
+                        print(cordxantes)
+                        tabuleiro[cordxantes][cordyantes] = 'V'
+                        tabuleiro[cordxdepois][cordydepois] = 'P'
+                        if cordxdepois == 7:
+                            tabuleiro[cordxdepois][cordydepois] = 'RP'
+                        break
+                    else:
+                        continue
                 else:
                     continue
             #Jogada Rainha
-            '''elif (len(lista_jogada) % 3 == 0 and len(lista_jogada) >= 6):
-                cordxantes = int(lista_jogada[1])
-                cordyantes = int(lista_jogada[4])    
-                tamanholista = len(lista_jogada)
-                cordxdepois = int(lista_jogada[tamanholista - 4])
-                cordydepois = int(lista_jogada[tamanholista - 1])
+            elif tabuleiro[cordxantes][cordyantes] == 'RP':
+                if (len(lista_jogada) == 12):
+                    if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                        rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                        break
+                    else:
+                        continue
+                else:
+                    continue
             else:
-                continue'''
+                continue
+            
     else:
         #Loop jogadas brancas
         while True:
@@ -350,17 +382,33 @@ while True:
             print()
             jogadastring = input("Joga: ")
             lista_jogada = list(jogadastring)
-            if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
-                if jogada(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
-                    cordxantes = int(lista_jogada[1])
-                    cordyantes = int(lista_jogada[4])
-                    cordxdepois = int(lista_jogada[7])
-                    cordydepois = int(lista_jogada[10])
-                    tabuleiro[cordxantes][cordyantes] = 'V'
-                    tabuleiro[cordxdepois][cordydepois] = 'B'
-                    if cordxdepois == 0:
-                        tabuleiro[cordxdepois][cordydepois] = 'RB'
-                    break
+            cordxantes = int(lista_jogada[1])
+            cordyantes = int(lista_jogada[4])
+            #Jogada Normal
+            if tabuleiro[cordxantes][cordyantes] == 'B':
+                if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                    if jogada(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                        cordxdepois = int(lista_jogada[7])
+                        cordydepois = int(lista_jogada[10])
+                        tabuleiro[cordxantes][cordyantes] = 'V'
+                        tabuleiro[cordxdepois][cordydepois] = 'B'
+                        if cordxdepois == 0:
+                            tabuleiro[cordxdepois][cordydepois] = 'RB'
+                        break
+                    else:
+                        continue
                 else:
                     continue
+            #Jogada Rainha
+            elif tabuleiro[cordxantes][cordyantes] == 'RB':
+                if (len(lista_jogada) == 12):
+                    if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                        rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                        break
+                    else:
+                        continue
+                else:
+                    continue
+            else:
+                continue
     contador+=1
