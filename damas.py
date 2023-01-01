@@ -325,6 +325,86 @@ def rainha_normal(xantes, yantes, xdepois, ydepois):
     else:
         return False
 
+#Eliminar peças existentes
+def rainha_eliminar(xantes, yantes, xdepois, ydepois):
+    difx = xdepois - xantes
+    dify = ydepois - yantes
+
+    if (tabuleiro[xantes][yantes] != 'RP' or tabuleiro[xantes][yantes] != 'RB') and tabuleiro[xdepois][ydepois] != 'V':
+        return False
+
+    #Frente Diagonal Direita
+    elif difx > 0 and dify > 0:
+        if difx == dify:
+            for i in range(1, difx):
+                if tabuleiro[xantes][yantes] == 'RP':
+                    if tabuleiro[xantes+i][yantes+i] == 'B' or tabuleiro[xantes+i][yantes+i] == 'RB':
+                        tabuleiro[xantes+i][yantes+i] = 'V'
+                        return True
+                elif tabuleiro[xantes][yantes] == 'RB':
+                    if tabuleiro[xantes+i][yantes+i] == 'P' or tabuleiro[xantes+i][yantes+i] == 'RP':
+                        tabuleiro[xantes+i][yantes+i] = 'V'
+                        return True
+                else:
+                    return False
+    #Trás Diagonal Esquerda
+    elif difx < 0 and dify < 0:
+        if difx == dify:
+            difx = difx * -1
+            dify = dify * -1
+
+            for i in range(1, difx):
+                if tabuleiro[xantes][yantes] == 'RP':
+                    if tabuleiro[xantes-i][yantes-i] == 'B' or tabuleiro[xantes-i][yantes-i] == 'RB':
+                        tabuleiro[xantes-i][yantes-i] = 'V'
+                        return True
+                elif tabuleiro[xantes][yantes] == 'RB':
+                    if tabuleiro[xantes-i][yantes-i] == 'P' or tabuleiro[xantes-i][yantes-i] == 'RP':
+                        tabuleiro[xantes-i][yantes-i] = 'V'
+                        return True
+                else:
+                    return False
+
+    #Frente Diagonal Esquerda
+    elif difx > 0 and dify < 0:
+        dify = dify * -1
+        
+        if difx == dify:
+            for i in range(1, difx):
+                if tabuleiro[xantes][yantes] == 'RP':
+                    if tabuleiro[xantes+i][yantes-i] == 'B' or tabuleiro[xantes+i][yantes-i] == 'RB':
+                        tabuleiro[xantes+i][yantes-i] = 'V'
+                        return True
+                elif tabuleiro[xantes][yantes] == 'RB':
+                    if tabuleiro[xantes+i][yantes-i] == 'P' or tabuleiro[xantes+i][yantes-i] == 'RP':
+                        tabuleiro[xantes+i][yantes-i] = 'V'
+                        return True
+                else:
+                    return False
+                            
+
+    #Trás Diagonal Direita
+    elif difx < 0 and dify > 0:
+        difx = difx * -1
+
+        if difx == dify:
+            for i in range(1, difx):
+                if tabuleiro[xantes][yantes] == 'RP':
+                    if tabuleiro[xantes-i][yantes+i] == 'B' or tabuleiro[xantes-i][yantes+i] == 'RB':
+                        tabuleiro[xantes-i][yantes+i] = 'V'
+                        return True
+                elif tabuleiro[xantes][yantes] == 'RB':
+                    if tabuleiro[xantes-i][yantes+i] == 'P' or tabuleiro[xantes-i][yantes+i] == 'RP':
+                        tabuleiro[xantes-i][yantes+i] = 'V'
+                        return True
+                else:
+                    return False
+
+    else:
+        return False
+
+
+
 #contador com a vez do jogador
 contador = jogador_inicial
 
@@ -361,7 +441,10 @@ while True:
                     continue
             #Jogada Rainha
             elif tabuleiro[cordxantes][cordyantes] == 'RP':
-                if (len(lista_jogada) == 12):
+                if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                    if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                        rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                        outra_jogada = True
                     if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                         rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
                         break
@@ -401,7 +484,10 @@ while True:
                     continue
             #Jogada Rainha
             elif tabuleiro[cordxantes][cordyantes] == 'RB':
-                if (len(lista_jogada) == 12):
+                if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                    if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                        rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                        outra_jogada = True
                     if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                         rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
                         break
