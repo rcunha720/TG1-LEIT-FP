@@ -439,15 +439,45 @@ while True:
                     continue
             #Jogada Rainha
             elif tabuleiro[cordxantes][cordyantes] == 'RP':
+                outra_jogada = False
                 if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
                     if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                         rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
                         outra_jogada = True
                     if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                         rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
-                        break
                     else:
                         continue
+
+                    while outra_jogada == True:
+                        clear()
+                        print("Jogador 1: " + str(j1))
+                        print("Rainha Preta")
+                        mostrar_tabuleiro()
+                        print()
+                        print("Para não procederes a uma segunda jogada da rainha, pressiona ENTER.")
+                        jogadastring = input("Joga: ")
+                        lista_jogada = list(jogadastring)
+                        try:
+                            cordxantes = int(lista_jogada[1])
+                            cordyantes = int(lista_jogada[4])
+                        except:
+                            break
+                        if (tabuleiro[cordxantes][cordyantes] == 'RP' and len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                            if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                                rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                                outra_jogada = True
+                            else:
+                                outra_jogada = False
+                        elif jogadastring == "":
+                            break
+                        else:
+                            print("cnt")
+                            input()
+                            continue                        
+                        if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                            rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                    break
                 else:
                     continue
             else:
@@ -482,15 +512,46 @@ while True:
                     continue
             #Jogada Rainha
             elif tabuleiro[cordxantes][cordyantes] == 'RB':
+                outra_jogada = False
                 if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
                     if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                         rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
                         outra_jogada = True
                     if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                         rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
-                        break
                     else:
                         continue
+
+                    while outra_jogada == True:
+                        clear()
+                        print("Jogador 2: " + str(j1))
+                        print("Rainha Branca")
+                        mostrar_tabuleiro()
+                        print()
+                        print("Para não procederes a uma segunda jogada da rainha, pressiona ENTER.")
+                        jogadastring = input("Joga: ")
+                        lista_jogada = list(jogadastring)
+                        try:
+                            cordxantes = int(lista_jogada[1])
+                            cordyantes = int(lista_jogada[4])
+                        except:
+                            break
+                        if (tabuleiro[cordxantes][cordyantes] == 'RB' and len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                            if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                                rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                                outra_jogada = True
+                            else:
+                                outra_jogada = False
+                        elif jogadastring == "":
+                            break
+                        else:
+                            print("cnt")
+                            input()
+                            continue                        
+                        if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                            rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                    break
+
                 else:
                     continue
             else:
