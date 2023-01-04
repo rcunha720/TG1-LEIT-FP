@@ -1,7 +1,5 @@
 #Bibliotecas Externas
-import os
-import random
-import time
+import os,random,time
 
 #Limpar a tela do terminal
 def clear():
