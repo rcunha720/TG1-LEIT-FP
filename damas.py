@@ -524,7 +524,7 @@ while True:
 
                     while outra_jogada == True:
                         clear()
-                        print("Jogador 2: " + str(j1))
+                        print("Jogador 2: " + str(j2))
                         print("Rainha Branca")
                         mostrar_tabuleiro()
                         print()
