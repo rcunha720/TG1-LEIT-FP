@@ -59,9 +59,9 @@ if escolha_pecas == "S" or escolha_pecas == "SIM":
             clear()
             jogador_inicial = 2
             print("Estrutura do jogo: número de peça a jogar[][] número para onde queres jogar[][]")
-            print("Ex: [0][2][1][3]")
+            print("\033[30;43mEx: [0][2][1][3]\033[m")
             print("Primeiro jogador a começar: " + str(j2))
-            input("Prime ENTER para começar a jogar. ")
+            input("Prime \033[4;32mENTER\033[m para começar a jogar. ")
             break
         else:
             continue
@@ -83,13 +83,13 @@ else:
     jogador_inicial = random.randint(1, 2)
     clear()
     print("Estrutura do jogo: número de peça a jogar[][] número para onde queres jogar[][]")
-    print("Ex: [0][2][1][3]")
+    print("\033[30;43mEx: [0][2][1][3]\033[m")
     if jogador_inicial == 1:
         print("Primeiro jogador a começar: " + str(j1))
-        input("Prime ENTER para começar a jogar. ")
+        input("Prime \033[4;32mENTER\033[m para começar a jogar. ")
     else:
-        print("Primeiro jogador a começar: " + str(j2))
-        input("Prime ENTER para começar a jogar. ")
+        print("Primeiro segundo a começar: " + str(j2))
+        input("Prime \033[4;32mENTER\033[m para começar a jogar. ")
 
 #Criação do tabuleiro sem peças
 tabuleiro = []
