@@ -401,7 +401,19 @@ def rainha_eliminar(xantes, yantes, xdepois, ydepois):
     else:
         return False
 
+#Vencedor
+def final_jogo(vencedor):
+    clear()
+    if vencedor == 'B':
+        print("Parabéns! Vencedor: " + str(j2))
+    elif vencedor == 'P':
+        print("Parabéns! Vencedor: " + str(j1))
 
+    print("Esperamos que tenhas gostado do algoritmo.")
+    print("Volta a testar sempre que quiseres.")
+    print()
+    print("Sente-te livre para usar, adaptar e melhorar em: https://github.com/rcunha720/TG1-LEIT-FP")
+    input()
 
 #contador com a vez do jogador
 contador = jogador_inicial
@@ -557,3 +569,25 @@ while True:
             else:
                 continue
     contador+=1
+
+    #Verificar se há vencedor
+    brancoin = False
+    pretoin = False
+
+    for i in range(8):
+        for j in range(8):
+            if tabuleiro[i][j] == 'P' or tabuleiro[i][j] == 'RP':
+                pretoin = True
+            elif tabuleiro[i][j] == 'B' or tabuleiro[i][j] == 'RB':
+                brancoin = True
+
+    if pretoin == True and brancoin == True:
+        continue
+    elif pretoin == False and brancoin == True:
+        vencedor = 'B'
+        break
+    elif pretoin == True and brancoin == False:
+        vencedor = 'P'
+        break
+
+final_jogo(vencedor)
