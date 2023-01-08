@@ -477,18 +477,18 @@ while True:
                             break
                         if (tabuleiro[cordxantes][cordyantes] == 'RP' and len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
                             if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
-                                rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
-                                outra_jogada = True
+                                if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                                    rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                                    rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                                    outra_jogada = True
+                                else:
+                                    continue
                             else:
-                                outra_jogada = False
+                                continue
                         elif jogadastring == "":
                             break
                         else:
-                            print("cnt")
-                            input()
                             continue                        
-                        if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
-                            rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
                     break
                 else:
                     continue
@@ -550,18 +550,18 @@ while True:
                             break
                         if (tabuleiro[cordxantes][cordyantes] == 'RB' and len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
                             if rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
-                                rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
-                                outra_jogada = True
+                                if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
+                                    rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                                    rainha_eliminar(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
+                                    outra_jogada = True
+                                else:
+                                    continue
                             else:
-                                outra_jogada = False
+                                continue
                         elif jogadastring == "":
                             break
                         else:
-                            print("cnt")
-                            input()
                             continue                        
-                        if rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
-                            rainha_normal(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10]))
                     break
 
                 else:
