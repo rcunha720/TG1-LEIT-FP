@@ -479,6 +479,8 @@ while True:
                             lista_jogada = list(jogadastring)
                             if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
                                 break
+                            elif jogadastring == "":
+                                break
                             else:
                                 continue
                         try:
@@ -561,6 +563,8 @@ while True:
                             jogadastring = input("Joga: ")
                             lista_jogada = list(jogadastring)
                             if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                                break
+                            elif jogadastring == "":
                                 break
                             else:
                                 continue
