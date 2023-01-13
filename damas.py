@@ -17,8 +17,24 @@ print(
 
 time.sleep(2)
 
-print("\033[2;32mVamos começar...\033[m")
+input("Prime \033[4;32mENTER\033[m para iniciar o jogo.")
+clear()
+
+print('''\033[33mREGRAS DO JOGO:\033[m
+Peças pretas = ( P )
+Peças brancas = ( B ) 
+Casa vázia = ( V )
+Rainha branca = ( RB )
+Rainha preta = ( RP )
+''')
+
+time.sleep(3)
+
+print("\033[2;32mVamos começar?\033[m")
+time.sleep(2)
+input("Prime \033[4;32mENTER\033[m para começar a jogar.")
 time.sleep(1)
+print()
 print("\033[2;32mBoa sorte!\033[m")
 time.sleep(2)
 
