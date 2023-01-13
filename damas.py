@@ -33,12 +33,12 @@ j2 = input("Introduz o nome do Jogador 2: ")
 clear()
 print("\033[33;40mMuito bem! Agora que já registaste o nome dos jogadores, vamos ver quem vai jogar primeiro.\033[m")
 time.sleep(2)
-print("\033[33;40mNo jogo das damas as peças pretas são as primeiras a começar.\033[m")
+print("\033[33;40mPodes escolher a primeira pessoa que vai jogar.\033[m")
 time.sleep(2)
 print()
 print("=-" * 50)
 print()
-escolha_pecas = input("Queres escolher quem vai ficar com as peças pretas? (S/N) ").upper()
+escolha_pecas = input("Queres escolher quem vai começar? (S/N) ").upper()
 
 #Escolha voluntária do primeiro jogador
 if escolha_pecas == "S" or escolha_pecas == "SIM":
@@ -424,13 +424,19 @@ while True:
     if contador % 2 == 1:
         #Loop jogadas pretas
         while True:
-            clear()
-            print("Jogador 1: " + str(j1))
-            print("Peças Pretas")
-            mostrar_tabuleiro()
-            print()
-            jogadastring = input("Joga: ")
-            lista_jogada = list(jogadastring)
+            while True:
+                clear()
+                print("Jogador 1: " + str(j1))
+                print("Peças Pretas")
+                mostrar_tabuleiro()
+                print()
+                jogadastring = input("Joga: ")
+                lista_jogada = list(jogadastring)
+                if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                    break
+                else:
+                    continue
+                
             cordxantes = int(lista_jogada[1])
             cordyantes = int(lista_jogada[4])
             #Jogada Normal
@@ -462,14 +468,19 @@ while True:
                         continue
 
                     while outra_jogada == True:
-                        clear()
-                        print("Jogador 1: " + str(j1))
-                        print("Rainha Preta")
-                        mostrar_tabuleiro()
-                        print()
-                        print("Para não procederes a uma segunda jogada da rainha, pressiona ENTER.")
-                        jogadastring = input("Joga: ")
-                        lista_jogada = list(jogadastring)
+                        while True:
+                            clear()
+                            print("Jogador 1: " + str(j1))
+                            print("Rainha Preta")
+                            mostrar_tabuleiro()
+                            print()
+                            print("Para não procederes a uma segunda jogada da rainha, pressiona ENTER.")
+                            jogadastring = input("Joga: ")
+                            lista_jogada = list(jogadastring)
+                            if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                                break
+                            else:
+                                continue
                         try:
                             cordxantes = int(lista_jogada[1])
                             cordyantes = int(lista_jogada[4])
@@ -498,13 +509,18 @@ while True:
     else:
         #Loop jogadas brancas
         while True:
-            clear()
-            print("Jogador 2: " + str(j2))
-            print("Peças Brancas")
-            mostrar_tabuleiro()
-            print()
-            jogadastring = input("Joga: ")
-            lista_jogada = list(jogadastring)
+            while True:
+                clear()
+                print("Jogador 2: " + str(j2))
+                print("Peças Brancas")
+                mostrar_tabuleiro()
+                print()
+                jogadastring = input("Joga: ")
+                lista_jogada = list(jogadastring)
+                if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                    break
+                else:
+                    continue
             cordxantes = int(lista_jogada[1])
             cordyantes = int(lista_jogada[4])
             #Jogada Normal
@@ -535,14 +551,19 @@ while True:
                         continue
 
                     while outra_jogada == True:
-                        clear()
-                        print("Jogador 2: " + str(j2))
-                        print("Rainha Branca")
-                        mostrar_tabuleiro()
-                        print()
-                        print("Para não procederes a uma segunda jogada da rainha, pressiona ENTER.")
-                        jogadastring = input("Joga: ")
-                        lista_jogada = list(jogadastring)
+                        while True:
+                            clear()
+                            print("Jogador 2: " + str(j2))
+                            print("Rainha Branca")
+                            mostrar_tabuleiro()
+                            print()
+                            print("Para não procederes a uma segunda jogada da rainha, pressiona ENTER.")
+                            jogadastring = input("Joga: ")
+                            lista_jogada = list(jogadastring)
+                            if (len(lista_jogada) == 12) and (lista_jogada[0] and lista_jogada[3] and lista_jogada[6] and lista_jogada[9] == '[') and (lista_jogada[2] and lista_jogada[5] and lista_jogada[8] and lista_jogada[11] == ']'):
+                                break
+                            else:
+                                continue
                         try:
                             cordxantes = int(lista_jogada[1])
                             cordyantes = int(lista_jogada[4])
