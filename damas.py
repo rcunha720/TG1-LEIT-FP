@@ -110,7 +110,7 @@ else:
 #Criação do tabuleiro sem peças
 tabuleiro = []
 for i in range(8):
-    r = ['V' for i in range(8)]
+    r = [' ' for i in range(8)]
     tabuleiro.append(r)
 
 def pecas_inciais():
@@ -147,9 +147,9 @@ pecas_inciais()
 #Visualização do tabuleiro
 def mostrar_tabuleiro():
     for i in range(7, -1, -1):
-        print(8*"+++++ ")
-        print("+ " + str(tabuleiro[i][0]) + " + + " + str(tabuleiro[i][1]) + " + + " + str(tabuleiro[i][2]) + " + + " + str(tabuleiro[i][3]) + " + + " + str(tabuleiro[i][4]) + " + + " + str(tabuleiro[i][5]) + " + + " + str(tabuleiro[i][6]) + " + + " + str(tabuleiro[i][7]) + " + ")
-    print(8*"+++++ ")
+        print(8*" ---  ")
+        print("| " + str(tabuleiro[i][0]) + " | | " + str(tabuleiro[i][1]) + " | | " + str(tabuleiro[i][2]) + " | | " + str(tabuleiro[i][3]) + " | | " + str(tabuleiro[i][4]) + " | | " + str(tabuleiro[i][5]) + " | | " + str(tabuleiro[i][6]) + " | | " + str(tabuleiro[i][7]) + " | ")
+    print(8*" ---  ")
 
 #Algoritmo de jogadas
 def jogada(xantes, yantes, xdepois, ydepois):
@@ -159,7 +159,7 @@ def jogada(xantes, yantes, xdepois, ydepois):
         if tabuleiro[xantes][yantes] != 'B' and tabuleiro[xantes][yantes] != 'RB':
             return False
         #Verificar que o espaço para onde a peça vai está vazio
-        elif tabuleiro[xdepois][ydepois] != 'V':
+        elif tabuleiro[xdepois][ydepois] != ' ':
             return False
         else:
             #Jogada Normal
@@ -168,8 +168,8 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de uma peça na diagonal esquerda
             elif (xdepois == xantes - 2 and ydepois == yantes - 2):
                 if (tabuleiro[xantes-1][yantes-1] == 'P' or tabuleiro[xantes-1][yantes-1] == 'RP'):
-                    if tabuleiro[xdepois][ydepois] == 'V':
-                        tabuleiro[xantes-1][yantes-1] = 'V'
+                    if tabuleiro[xdepois][ydepois] == ' ':
+                        tabuleiro[xantes-1][yantes-1] = ' '
                         return True
                     else:
                         return False
@@ -178,8 +178,8 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de uma peça na diagonal direita
             elif (xdepois == xantes - 2 and ydepois == yantes + 2):
                 if (tabuleiro[xantes-1][yantes+1] == 'P' or tabuleiro[xantes-1][yantes+1] == 'RP'):
-                    if tabuleiro[xdepois][ydepois] == 'V':
-                        tabuleiro[xantes-1][yantes+1] = 'V'
+                    if tabuleiro[xdepois][ydepois] == ' ':
+                        tabuleiro[xantes-1][yantes+1] = ' '
                         return True
                     else:
                         return False
@@ -188,9 +188,9 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de duas peças na diagonal esqurda
             elif (xdepois == xantes - 4 and ydepois == yantes - 4):
                 if ((tabuleiro[xantes-1][yantes-1] == 'P' or tabuleiro[xantes-1][yantes-1] == 'RP') and (tabuleiro[xantes-3][yantes-3] == 'P' or tabuleiro[xantes-3][yantes-3] == 'RP')):
-                    if (tabuleiro[xantes-2][yantes-2] == 'V' and tabuleiro[xantes-4][yantes-4] == 'V'):
-                        tabuleiro[xantes-1][yantes-1] = 'V'
-                        tabuleiro[xantes-3][yantes-3] = 'V'
+                    if (tabuleiro[xantes-2][yantes-2] == ' ' and tabuleiro[xantes-4][yantes-4] == ' '):
+                        tabuleiro[xantes-1][yantes-1] = ' '
+                        tabuleiro[xantes-3][yantes-3] = ' '
                         return True
                     else:
                         return False
@@ -199,9 +199,9 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de duas peças na diagonal direita
             elif (xdepois == xantes - 4 and ydepois == yantes + 4):
                 if((tabuleiro[xantes-1][yantes+1] == 'P' or tabuleiro[xantes-1][yantes+1] == 'RP') and (tabuleiro[xantes-3][yantes+3] == 'P' or tabuleiro[xantes-3][yantes+3] == 'RP')):
-                    if (tabuleiro[xantes-2][yantes+2] == 'V' and tabuleiro[xantes-4][yantes+4] == 'V'):
-                        tabuleiro[xantes-1][yantes+1] = 'V'
-                        tabuleiro[xantes-3][yantes+3] = 'V'
+                    if (tabuleiro[xantes-2][yantes+2] == ' ' and tabuleiro[xantes-4][yantes+4] == ' '):
+                        tabuleiro[xantes-1][yantes+1] = ' '
+                        tabuleiro[xantes-3][yantes+3] = ' '
                         return True
                     else:
                         return False
@@ -210,10 +210,10 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de três peças na diagonal esquerda
             elif (xdepois == xantes - 6 and ydepois == yantes - 6):
                 if ((tabuleiro[xantes-1][yantes-1] == 'P' or tabuleiro[xantes-1][yantes-1] == 'RP') and (tabuleiro[xantes-3][yantes-3] == 'P' or tabuleiro[xantes-3][yantes-3] == 'RP') and (tabuleiro[xantes-5][yantes-5] == 'P' or tabuleiro[xantes-5][yantes-5] == 'RP')):
-                    if(tabuleiro[xantes-2][yantes-2] == 'V' and tabuleiro[xantes-4][yantes-4] == 'V' and tabuleiro[xantes-6][yantes-6] == 'V'):
-                        tabuleiro[xantes-1][yantes-1] = 'V'
-                        tabuleiro[xantes-3][yantes-3] = 'V'
-                        tabuleiro[xantes-5][yantes-5] = 'V'
+                    if(tabuleiro[xantes-2][yantes-2] == ' ' and tabuleiro[xantes-4][yantes-4] == ' ' and tabuleiro[xantes-6][yantes-6] == ' '):
+                        tabuleiro[xantes-1][yantes-1] = ' '
+                        tabuleiro[xantes-3][yantes-3] = ' '
+                        tabuleiro[xantes-5][yantes-5] = ' '
                         return True
                     else:
                         return False
@@ -222,10 +222,10 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de três peças na diagonal direita
             elif (xdepois == xantes - 6 and ydepois == yantes + 6):
                 if ((tabuleiro[xantes-1][yantes+1] == 'P' or tabuleiro[xantes-1][yantes+1] == 'RP') and (tabuleiro[xantes-3][yantes+3] == 'P' or tabuleiro[xantes-3][yantes+3] == 'RP') and (tabuleiro[xantes-5][yantes+5] == 'P' or tabuleiro[xantes-5][yantes+5] == 'RP')):
-                    if(tabuleiro[xantes-2][yantes+2] == 'V' and tabuleiro[xantes-4][yantes+4] == 'V' and tabuleiro[xantes-6][yantes+6] == 'V'):
-                        tabuleiro[xantes-1][yantes+1] = 'V'
-                        tabuleiro[xantes-3][yantes+3] = 'V'
-                        tabuleiro[xantes-5][yantes+5] = 'V'
+                    if(tabuleiro[xantes-2][yantes+2] == ' ' and tabuleiro[xantes-4][yantes+4] == ' ' and tabuleiro[xantes-6][yantes+6] == ' '):
+                        tabuleiro[xantes-1][yantes+1] = ' '
+                        tabuleiro[xantes-3][yantes+3] = ' '
+                        tabuleiro[xantes-5][yantes+5] = ' '
                         return True
                     else:
                         return False
@@ -239,7 +239,7 @@ def jogada(xantes, yantes, xdepois, ydepois):
         if tabuleiro[xantes][yantes] != 'P' and tabuleiro[xantes][yantes] != 'RP':
             return False
         #Verificar que o espaço para onde a peça vai está vazio
-        elif tabuleiro[xdepois][ydepois] != 'V':
+        elif tabuleiro[xdepois][ydepois] != ' ':
             return False
         else:
             #Jogada Normal
@@ -248,8 +248,8 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de uma peça na diagonal esquerda
             elif (xdepois == xantes + 2 and ydepois == yantes - 2):
                 if(tabuleiro[xantes+1][yantes-1] == 'B' or tabuleiro[xantes+1][yantes-1] == 'RB'):
-                    if tabuleiro[xdepois][ydepois] == 'V':
-                        tabuleiro[xantes+1][yantes-1] = 'V'
+                    if tabuleiro[xdepois][ydepois] == ' ':
+                        tabuleiro[xantes+1][yantes-1] = ' '
                         return True
                     else:
                         return False
@@ -258,8 +258,8 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de uma peça na diagonal direita
             elif (xdepois == xantes + 2 and ydepois == yantes + 2):
                 if(tabuleiro[xantes+1][yantes+1] == 'B' or tabuleiro[xantes+1][yantes+1] == 'RB'):
-                    if tabuleiro[xdepois][ydepois] == 'V':
-                        tabuleiro[xantes+1][yantes+1] = 'V'
+                    if tabuleiro[xdepois][ydepois] == ' ':
+                        tabuleiro[xantes+1][yantes+1] = ' '
                         return True
                     else:
                         return False
@@ -268,9 +268,9 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de duas peças na diagonal esquerda
             elif (xdepois == xantes + 4 and ydepois == yantes - 4):
                 if((tabuleiro[xantes+1][yantes-1] == 'B' or tabuleiro[xantes+1][yantes-1] == 'RB') and (tabuleiro[xantes+3][yantes-3] == 'B' or tabuleiro[xantes+3][yantes-3] == 'RB')):
-                    if (tabuleiro[xantes+2][yantes-2] == 'V' and tabuleiro[xantes+4][yantes-4] == 'V'):
-                        tabuleiro[xantes+1][yantes-1] = 'V'
-                        tabuleiro[xantes+3][yantes-3] = 'V'
+                    if (tabuleiro[xantes+2][yantes-2] == ' ' and tabuleiro[xantes+4][yantes-4] == ' '):
+                        tabuleiro[xantes+1][yantes-1] = ' '
+                        tabuleiro[xantes+3][yantes-3] = ' '
                         return True
                     else:
                         return False
@@ -279,9 +279,9 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de duas peças na diagonal direita
             elif (xdepois == xantes + 4 and ydepois == yantes + 4):
                 if((tabuleiro[xantes+1][yantes+1] == 'B' or tabuleiro[xantes+1][yantes+1] == 'RB') and (tabuleiro[xantes+3][yantes+3] == 'B' or tabuleiro[xantes+3][yantes+3] == 'RB')):
-                    if (tabuleiro[xantes+2][yantes+2] == 'V' and tabuleiro[xantes+4][yantes+4] == 'V'):
-                        tabuleiro[xantes+1][yantes+1] = 'V'
-                        tabuleiro[xantes+3][yantes+3] = 'V'
+                    if (tabuleiro[xantes+2][yantes+2] == ' ' and tabuleiro[xantes+4][yantes+4] == ' '):
+                        tabuleiro[xantes+1][yantes+1] = ' '
+                        tabuleiro[xantes+3][yantes+3] = ' '
                         return True
                     else:
                         return False
@@ -290,10 +290,10 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de três peças na diagonal esquerda
             elif (xdepois == xantes + 6 and ydepois == yantes - 6):
                 if ((tabuleiro[xantes+1][yantes-1] == 'B' or tabuleiro[xantes+1][yantes-1] == 'RB') and (tabuleiro[xantes+3][yantes-3] == 'B' or tabuleiro[xantes+3][yantes-3] == 'RB') and (tabuleiro[xantes+5][yantes-5] == 'B' or tabuleiro[xantes+5][yantes-5] == 'RB')):
-                    if(tabuleiro[xantes+2][yantes-2] == 'V' and tabuleiro[xantes+4][yantes-4] == 'V' and tabuleiro[xantes+6][yantes-6] == 'V'):
-                        tabuleiro[xantes+1][yantes-1] = 'V'
-                        tabuleiro[xantes+3][yantes-3] = 'V'
-                        tabuleiro[xantes+5][yantes-5] = 'V'
+                    if(tabuleiro[xantes+2][yantes-2] == ' ' and tabuleiro[xantes+4][yantes-4] == ' ' and tabuleiro[xantes+6][yantes-6] == ' '):
+                        tabuleiro[xantes+1][yantes-1] = ' '
+                        tabuleiro[xantes+3][yantes-3] = ' '
+                        tabuleiro[xantes+5][yantes-5] = ' '
                         return True
                     else:
                         return False
@@ -302,10 +302,10 @@ def jogada(xantes, yantes, xdepois, ydepois):
             #Eliminação de três peças na diagonal direita
             elif (xdepois == xantes + 6 and ydepois == yantes + 6):
                 if ((tabuleiro[xantes+1][yantes+1] == 'B' or tabuleiro[xantes+1][yantes+1] == 'RB') and (tabuleiro[xantes+3][yantes+3] == 'B' or tabuleiro[xantes+3][yantes+3] == 'RB') and (tabuleiro[xantes+5][yantes+5] == 'B' or tabuleiro[xantes+5][yantes+5] == 'RB')):
-                    if(tabuleiro[xantes+2][yantes+2] == 'V' and tabuleiro[xantes+4][yantes+4] == 'V' and tabuleiro[xantes+6][yantes+6] == 'V'):
-                        tabuleiro[xantes+1][yantes+1] = 'V'
-                        tabuleiro[xantes+3][yantes+3] = 'V'
-                        tabuleiro[xantes+5][yantes+5] = 'V'
+                    if(tabuleiro[xantes+2][yantes+2] == ' ' and tabuleiro[xantes+4][yantes+4] == ' ' and tabuleiro[xantes+6][yantes+6] == ' '):
+                        tabuleiro[xantes+1][yantes+1] = ' '
+                        tabuleiro[xantes+3][yantes+3] = ' '
+                        tabuleiro[xantes+5][yantes+5] = ' '
                         return True
                     else:
                         return False
@@ -323,14 +323,14 @@ def rainha_normal(xantes, yantes, xdepois, ydepois):
         return False
 
     elif (difx == dify) or (difx == dify * -1) or (difx * -1 == dify):
-        if tabuleiro[xdepois][ydepois] == 'V':
+        if tabuleiro[xdepois][ydepois] == ' ':
             if tabuleiro[xantes][yantes] == 'RB':
                 tabuleiro[xdepois][ydepois] = 'RB'
-                tabuleiro[xantes][yantes] = 'V'
+                tabuleiro[xantes][yantes] = ' '
                 return True
             elif tabuleiro[xantes][yantes] == 'RP':
                 tabuleiro[xdepois][ydepois] = 'RP'    
-                tabuleiro[xantes][yantes] = 'V'
+                tabuleiro[xantes][yantes] = ' '
                 return True
             else:
                 return False
@@ -344,7 +344,7 @@ def rainha_eliminar(xantes, yantes, xdepois, ydepois):
     difx = xdepois - xantes
     dify = ydepois - yantes
 
-    if (tabuleiro[xantes][yantes] != 'RP' or tabuleiro[xantes][yantes] != 'RB') and tabuleiro[xdepois][ydepois] != 'V':
+    if (tabuleiro[xantes][yantes] != 'RP' or tabuleiro[xantes][yantes] != 'RB') and tabuleiro[xdepois][ydepois] != ' ':
         return False
 
     #Frente Diagonal Direita
@@ -353,11 +353,11 @@ def rainha_eliminar(xantes, yantes, xdepois, ydepois):
             for i in range(1, difx):
                 if tabuleiro[xantes][yantes] == 'RP':
                     if tabuleiro[xantes+i][yantes+i] == 'B' or tabuleiro[xantes+i][yantes+i] == 'RB':
-                        tabuleiro[xantes+i][yantes+i] = 'V'
+                        tabuleiro[xantes+i][yantes+i] = ' '
                         return True
                 elif tabuleiro[xantes][yantes] == 'RB':
                     if tabuleiro[xantes+i][yantes+i] == 'P' or tabuleiro[xantes+i][yantes+i] == 'RP':
-                        tabuleiro[xantes+i][yantes+i] = 'V'
+                        tabuleiro[xantes+i][yantes+i] = ' '
                         return True
                 else:
                     return False
@@ -370,11 +370,11 @@ def rainha_eliminar(xantes, yantes, xdepois, ydepois):
             for i in range(1, difx):
                 if tabuleiro[xantes][yantes] == 'RP':
                     if tabuleiro[xantes-i][yantes-i] == 'B' or tabuleiro[xantes-i][yantes-i] == 'RB':
-                        tabuleiro[xantes-i][yantes-i] = 'V'
+                        tabuleiro[xantes-i][yantes-i] = ' '
                         return True
                 elif tabuleiro[xantes][yantes] == 'RB':
                     if tabuleiro[xantes-i][yantes-i] == 'P' or tabuleiro[xantes-i][yantes-i] == 'RP':
-                        tabuleiro[xantes-i][yantes-i] = 'V'
+                        tabuleiro[xantes-i][yantes-i] = ' '
                         return True
                 else:
                     return False
@@ -387,11 +387,11 @@ def rainha_eliminar(xantes, yantes, xdepois, ydepois):
             for i in range(1, difx):
                 if tabuleiro[xantes][yantes] == 'RP':
                     if tabuleiro[xantes+i][yantes-i] == 'B' or tabuleiro[xantes+i][yantes-i] == 'RB':
-                        tabuleiro[xantes+i][yantes-i] = 'V'
+                        tabuleiro[xantes+i][yantes-i] = ' '
                         return True
                 elif tabuleiro[xantes][yantes] == 'RB':
                     if tabuleiro[xantes+i][yantes-i] == 'P' or tabuleiro[xantes+i][yantes-i] == 'RP':
-                        tabuleiro[xantes+i][yantes-i] = 'V'
+                        tabuleiro[xantes+i][yantes-i] = ' '
                         return True
                 else:
                     return False
@@ -405,11 +405,11 @@ def rainha_eliminar(xantes, yantes, xdepois, ydepois):
             for i in range(1, difx):
                 if tabuleiro[xantes][yantes] == 'RP':
                     if tabuleiro[xantes-i][yantes+i] == 'B' or tabuleiro[xantes-i][yantes+i] == 'RB':
-                        tabuleiro[xantes-i][yantes+i] = 'V'
+                        tabuleiro[xantes-i][yantes+i] = ' '
                         return True
                 elif tabuleiro[xantes][yantes] == 'RB':
                     if tabuleiro[xantes-i][yantes+i] == 'P' or tabuleiro[xantes-i][yantes+i] == 'RP':
-                        tabuleiro[xantes-i][yantes+i] = 'V'
+                        tabuleiro[xantes-i][yantes+i] = ' '
                         return True
                 else:
                     return False
@@ -462,7 +462,7 @@ while True:
                         cordxdepois = int(lista_jogada[7])
                         cordydepois = int(lista_jogada[10])
                         print(cordxantes)
-                        tabuleiro[cordxantes][cordyantes] = 'V'
+                        tabuleiro[cordxantes][cordyantes] = ' '
                         tabuleiro[cordxdepois][cordydepois] = 'P'
                         if cordxdepois == 7:
                             tabuleiro[cordxdepois][cordydepois] = 'RP'
@@ -547,7 +547,7 @@ while True:
                     if jogada(int(lista_jogada[1]), int(lista_jogada[4]), int(lista_jogada[7]), int(lista_jogada[10])) == True:
                         cordxdepois = int(lista_jogada[7])
                         cordydepois = int(lista_jogada[10])
-                        tabuleiro[cordxantes][cordyantes] = 'V'
+                        tabuleiro[cordxantes][cordyantes] = ' '
                         tabuleiro[cordxdepois][cordydepois] = 'B'
                         if cordxdepois == 0:
                             tabuleiro[cordxdepois][cordydepois] = 'RB'
