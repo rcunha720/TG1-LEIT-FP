@@ -23,7 +23,7 @@ clear()
 print('''\033[33mREGRAS DO JOGO:\033[m
 Peças pretas = ( P )
 Peças brancas = ( B ) 
-Casa vázia = ( V )
+Casa vázia = (  )
 Rainha branca = ( RB )
 Rainha preta = ( RP )
 ''')
